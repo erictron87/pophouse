@@ -1,0 +1,409 @@
+// _studio.scss
+// ==============
+
+body.studio-wrap {
+   max-height: 100vh;
+   overflow: hidden;
+}
+
+#about-intro {
+   background:#141414;
+   position: relative;
+   height: 100vh;
+   width: 100%;
+   overflow: hidden;
+   h1 {
+      color:#fff;
+      position: absolute;
+      @include center;
+      text-align: center;
+      display: block;
+      margin-top: -15px;
+      span {
+         position: relative;
+      }
+      .text {
+         color:#fff;
+         display: block;
+         opacity: 0;
+         will-change: transform;
+         -webkit-backface-visibility: visible;
+         backface-visibility: visible;
+         animation: aboutFade .5s normal forwards ease-in-out;
+      }
+      .cont {
+         display: block;
+         height: 85px;
+         span {
+            position: absolute;
+            width: 100%;
+            left: 0;
+         }
+      }
+      .text1 {
+         color: #adadad;
+         opacity: 0;
+         animation: finalFade .375s normal forwards ease-in-out;
+         animation-delay: .375s;
+      }
+      .text2 {
+         animation-delay: .75s;
+      }
+      .text3 {
+         animation-delay: 1.125s;
+      }
+      .text4 {
+         animation-delay: 1.5s;
+      }
+      .text5 {
+         animation-delay: 1.875s;
+      }
+      .text6 {
+         animation: finalFade .375s normal forwards ease-in-out;
+         animation-delay: 2.25s;
+      }
+      @keyframes aboutFade {
+         0% {
+            opacity: 0;
+         }
+         50% {
+            opacity: 1;
+         }
+         100% {
+            opacity: 0;
+         }
+      }
+      @keyframes finalFade {
+         0% {
+            opacity: 0;
+         }
+         100% {
+            opacity: 1;
+         }
+      }
+      @include bp-tab-vert {
+         margin-top: -35px;
+      }
+      @include bp-mob-wide {
+         margin-top: 0;
+      }
+   }
+   .scroll {
+      color:#fff;
+      font-size: 13px;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      @include transform (translateX(-50%));
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      text-align: center;
+      display: table;
+      margin: 0 auto;
+      animation: fadeIn .25s normal forwards ease-in-out;
+      animation-delay: 3s;
+      opacity: 0;
+      visibility: hidden;
+      span {
+         display: block;
+         &:first-child {
+            margin-bottom: 15px;
+         }
+      }
+      .line {
+         height: 60px;
+         width: 2px;
+         margin-left: calc(50% - 1px);
+         background: #fff;
+         animation: bounce .625s;
+         animation-direction: alternate;
+         animation-timing-function: cubic-bezier(.625, 0.05, 1, .5);
+         animation-iteration-count: infinite;
+         @keyframes bounce {
+            from {
+               @include transform (translateY(15px));
+            }
+            to {
+               @include transform (translateY(0px));
+            }
+         }
+      }
+      @include touch {
+         .line {
+            height: 90px;
+         }
+      }
+      @include bp-tab-vert {
+         .line {
+            height: 120px;
+         }
+      }
+      @include bp-mob {
+         span:first-child {
+            margin-bottom: 10px;
+         }
+      }
+      @include bp-mob-wide {
+         .line {
+            height: 35px;
+         }
+      }
+   }
+}
+
+#studio-intro {
+   padding-top: calc(10vw + 120px);
+   .split-rt p {
+      max-width: 720px;
+   }
+   .heading {
+      margin-top: 20px;
+      padding-top: 0;
+   }
+   @include bp-991 {
+      padding: 225px 48px 0;
+   }
+   @include bp-mob {
+      padding-top: 140px;
+   }
+   @include bp-mob-vert {
+      padding: 140px 0 0;
+   }
+}
+
+#team {
+   padding-top: 160px;
+   .ind {
+      position: relative;
+      margin-top: 48px;
+
+      img {
+         position: relative;
+         display: block;
+         width: 100%;
+         
+      }
+      div {
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         background: $black;
+         color: #fff;
+         padding: 30px 20px;
+         box-sizing: border-box;
+         font-size: 16px;
+         @include flex;
+         flex-direction: column;
+         justify-content: flex-end;
+         align-items: flex-start;
+         @include transition (all .2s ease-in-out);
+         @include desktop {
+            opacity: 0;
+         }
+      }
+      &:hover div {
+         @include desktop {
+            opacity: 1;
+         }
+      }
+      .des {
+         font-size: 14px;
+         font-family: $mars;
+         display: block;
+         margin-top: 5px;
+      }
+      .title {
+         display: block;
+         margin-top: 30px;
+      }
+      @media screen and (min-width: 1920px) {
+         width: calc(25% - (144px/4));
+         img{
+            min-height:calc(1.49 * (25% - (36px)));
+         }
+      }
+   }
+   @include bp-tab {
+      padding-top: 100px;
+      .ind {
+         margin-top: 35px;
+         div {
+            font-size: 15px;
+            .des {
+               font-size: 12px;
+            }
+         }
+      }
+   }
+   @include touch {
+      .ind div {
+         position: relative;
+         background: transparent;
+         top: auto;
+         left: auto;
+         height: auto;
+         color: $black;
+         padding: 15px 15px 0 0;
+         .des, .title {
+            margin-top: 3px;
+         }
+      }
+   }
+   @include bp-991 {
+      .ind {
+         width: calc(50% - 15px);
+      }
+   }
+   @include bp-mob {
+      padding-top: 20px;
+      .ind {
+         width: calc(50% - 10px);
+         img{
+            min-height:calc(1.49 * (50% - (10px)));
+         }
+      }
+   }
+   @include bp-mob-vert {
+      .ind {
+         width: 100%;
+         img{
+            min-height:calc(1.49 *(100% - (20px)));
+         }
+      }
+   }
+}
+
+#careers {
+   background: $light;
+   margin-top: 175px;
+   padding: 200px 0 175px;
+   .split-2 * {
+   }
+   .heading {
+      margin: 0 0 45px;
+   }
+   p a {
+      font-weight: bold;
+      position: relative;
+      &:after {
+         position: absolute;
+         bottom: 0;
+         left: 50%;
+         content: '';
+         height: 1px;
+         background: $black;
+         width: 0;
+      }
+      &:hover:after {
+         width: 100%;
+         left: 0;
+      }
+   }
+   .links {
+      margin-top: 20px;
+      .acc-link {
+         .icon img {
+            width: 14px;
+         }
+      }
+   }
+   @include bp-tab {
+      margin-top: 150px;
+      padding: 175px 0;
+      .heading {
+         margin-bottom: 30px;
+      }
+   }
+   @include bp-991 {
+      padding-left: 48px;
+      padding-right: 48px;
+      .splits {
+         display: block;
+         .split {
+            width: 100%;
+         }
+      }
+      .heading {
+         margin-top: 15px;
+      }
+   }
+   @include bp-mob {
+      margin-top: 100px;
+      padding: 90px 48px 80px;
+      .heading {
+         margin-bottom: 15px;
+      }
+   }
+   @include bp-mob-vert {
+      margin-top: 60px;
+      padding: 90px 0 60px;
+      .links .acc-link .icon img {
+         width: 11px;
+      }
+   }
+}
+
+#studio-intro.careers {
+   background: $light;
+   padding-bottom: 125px;
+   .heading {
+      margin-top: 0;
+   }
+   a {
+      font-weight: bold;
+      position: relative;
+      display: inline-block;
+      &:after {
+         position: absolute;
+         bottom: 0;
+         left: 50%;
+         content: '';
+         height: 1px;
+         background: $black;
+         width: 0;
+      }
+      &:hover:after {
+         @include desktop {
+            width: 100%;
+            left: 0;
+         }
+      }
+   }
+   @include bp-tab {
+      padding-bottom: 90px;
+   }
+   @include bp-991 {
+      .heading {
+         margin-top: 15px;
+      }
+   }
+   @include bp-mob {
+      padding-bottom: 50px;
+   }
+   @include bp-mob-vert {
+      padding-bottom: 40px;
+   }
+}
+
+#posting-info {
+   padding-top: 50px;
+   padding-bottom: 175px;
+   @include bp-tab {
+      padding-top: 25px;
+      padding-bottom: 150px;
+   }
+   @include bp-991 {
+      padding: 25px 48px 150px;
+      .split-2 {
+         width: 100%;
+      }
+   }
+   @include bp-mob {
+      padding-bottom: 80px;
+   }
+   @include bp-mob-vert {
+      padding: 15px 0 60px;
+   }
+}

@@ -1,0 +1,498 @@
+// _modules.scss
+// =================
+
+/**WRAP**/
+
+#frame {
+   width: 100%;
+   height: 100vh;
+   position: fixed;
+   top: 0;
+   left: 0;
+   box-sizing: border-box;
+   border: 6px solid $black;
+   z-index: 10000;
+   pointer-events: none;
+   @include bp-mob {
+      display: none;
+   }
+}
+
+/**SOCIAL LINKS**/
+
+.social {
+   li {
+      display: inline-block;
+      font-family: $mars;
+      margin-left: 10px;
+      a {
+         display: block;
+         width: 28px;
+         height: 28px;
+         border-radius: 14px;
+         border: 1px solid #fff;
+         box-sizing: border-box;
+         text-align: center;
+         line-height: 25px;
+         font-size: 12px;
+         color: #fff;
+         &:hover {
+            @include desktop {
+               background: #fff;
+               color: $black;
+            }
+         }
+      }
+      @include bp-mob {
+         margin-left: 8px;
+         a {
+            width: 24px;
+            height: 24px;
+            line-height: 20px;
+            font-size: 10px;
+         }
+      }
+   }
+}
+
+/**COLUMN STYLES**/
+
+.splits {
+   @include flex;
+   -ms-flex-align: start;
+   align-items: start;
+   margin: 0 auto;
+   .split:empty {
+      height: 0;
+      margin-top: 0 !important;
+   }
+   &.col-2 {
+      .split {
+         width: 50%;
+      }
+   }
+   &.col-3 {
+      .split {
+         width: calc(33.3333% - (96px/3));
+      }
+      .split-2 {
+         width: calc(66.6667% - (48px/3));
+      }
+   }
+   @include bp-tab {
+      &.col-3 {
+         .split {
+            width: calc(33.3333% - (70px/3));
+         }
+         .split-2 {
+            width: calc(66.6667% - (35px/3));
+         }
+      }
+   }
+   @include bp-tab-vert {
+      &.col-3 {
+         .split {
+            width: calc(33.3333% - (50px/3));
+         }
+         .split-2 {
+            width: calc(66.6667% - (25px/3));
+         }
+      }
+   }
+   @include bp-mob-vert {
+      &.col-3 {
+         .split, .split-2 {
+            width: 100%;
+         }
+      }
+   }
+}
+
+/**CONTACT SECTION**/
+
+#contactWrap {
+   min-height: 768px;
+   height: 100vh;
+   background: $black;
+   color: #fff;
+   position: relative;
+   @include flex;
+   .contain {
+      text-align: center;
+      overflow: visible;
+      max-width: 1920px;
+      .contacts {
+         margin-top: -30px;
+      }
+      a {
+         color: #fff !important;
+         span {
+            font-weight: 300;
+            margin: 35px auto 0;
+            display: table;
+            position: relative;
+            padding: 0 0 5px;
+            &:after {
+               position: absolute;
+               bottom: 0;
+               left: 50%;
+               width: 0;
+               @include transform (translateX(-50%));
+               content: '';
+               height: 1px;
+               background: #fff;
+               @include transition (all .2s ease-in-out);
+            }
+         }
+         &:hover {
+            @include desktop {
+               span:after {
+                  width: 100%;
+               }
+            }
+         }
+      }
+      .join {
+         padding-left: 48px;
+      }
+      .media {
+         padding-right: 48px;
+      }
+      @include bp-tab {
+         .join {
+            padding-left: 30px;
+         }
+         .media {
+            padding-right: 30px;
+         }
+      }
+      @include bp-mob-wide {
+         .join {
+            padding-left: 0px;
+         }
+         .media {
+            padding-right: 0px;
+         }
+      }
+   }
+   .footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      left: 0;
+      padding: 48px;
+      box-sizing: border-box;
+      @include flex;
+      align-items: flex-end;
+      .info {
+         font-size: 14px;
+         line-height: 24px;
+         a {
+            color: #fff;
+            display: block;
+         }
+      }
+      @include bp-tab {
+         padding: 40px;
+      }
+      @include bp-mob {
+         padding: 25px;
+         .info {
+            font-size: 13px;
+            line-height: 21px;
+         }
+      }
+   }
+   @include bp-tab-vert {
+      .contain {
+         .split-1 {
+            width: 100%;
+            padding: 25px !important;
+         }
+         a span {
+            margin-top: 25px;
+         }
+      }
+   }
+   @include bp-mob {
+      .contain a span {
+         margin-top: 12px;
+         font-size: 14px;
+      }
+   }
+   @include bp-mob-wide {
+      min-height: 100vh;
+   }
+   @include bp-mob-vert {
+      min-height: 100vh;
+      .contain {
+         .contacts {
+            margin-top: -15px;
+         }
+         .split-1 {
+            padding: 18px !important;
+         }
+      }
+   }
+}
+
+/**VARIOUS**/
+
+.btn {
+   font-size: 15px;
+   letter-spacing: .1em;
+   text-transform: uppercase;
+   @include bp-991 {
+      font-size: 13px;
+   }
+}
+
+.no-link {
+   cursor: default;
+   pointer-events: none;
+}
+
+h2.line {
+   position: relative;
+   display: block;
+   &:before, &:after {
+      width: 100%;
+      height: 1px;
+      background: $gray;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      content: '';
+      z-index: 0;
+   }
+   &:after {
+      background: $gray;
+      top: calc(50% - 1px);
+      opacity: .5;
+   }
+   span {
+      position: relative;
+      z-index: 1;
+      background: #fff;
+      padding-right: 35px;
+   }
+   @include bp-991 {
+      span {
+         padding-right: 25px;
+      }
+   }
+}
+
+/**SUBPAGE LAYOUT**/
+
+.subScroll {
+   position: absolute;
+   top: 0;
+   left: 0;
+   height: 0;
+}
+
+.projScroll {
+   position: relative;
+   top: 0;
+   left: 0;
+   height: 0;
+}
+
+/**SUBPAGE TYPOGRAPHY**/
+
+#subpage {
+   p {
+      font-size: 16px;
+      line-height: 1.625;
+   }
+   .heading {
+      font-size: 26px;
+      line-height: 1.6;
+      font-family: $mars;
+   }
+   .split-rt .heading {
+      max-width: 720px;
+   }
+   @include bp-lg {
+      p {
+         font-size: 18px;
+      }
+      .heading {
+         font-size: 32px;
+      }
+   }
+   @include bp-tab {
+      p {
+         font-size: 15px;
+      }
+      .heading {
+         font-size: 22px;
+      }
+   }
+   @include bp-mob {
+      p {
+         font-size: 14px;
+      }
+      .heading {
+         font-size: 19px;
+      }
+   }
+}
+
+.sub-intro {
+   position: relative;
+   .split-lt {
+      padding-right: 100px;
+      box-sizing: border-box;
+      @include bp-tab {
+         padding-right: 80px;
+      }
+   }
+   @include bp-991 {
+      .splits {
+         display: block;
+         .split {
+            width: 100%;
+            padding: 0;
+         }
+         .split-rt {
+            margin-top: 30px;
+         }
+         .heading {
+            margin-top: 15px;
+         }
+      }
+   }
+   @include bp-mob {
+      .heading {
+         padding-top: 0;
+      }
+      .splits .split-rt {
+         margin-top: 15px;
+      }
+   }
+   p {
+      padding: 10px 0;
+      &:first-child {
+         padding-top: 0;
+      }
+      @include bp-tab {
+         padding: 6px 0;
+      }
+   }
+}
+
+/**ACCORDIONS**/
+
+
+
+.band-item {
+   margin-top: 35px;
+   .acc-link {
+      display: block;
+      font-size: 24px;
+      @include flex;
+      align-items: flex-end;
+      padding: 35px 0 12px;
+      border-bottom: 2px solid $gray;
+      cursor: pointer;
+      .num {
+         width: 40px;
+      }
+      .icon {
+         width: 30px;
+         text-align: right;
+         @include transition (all .1s ease-in-out);
+         transform-origin: center center;
+         font-weight: bold;
+         img {
+            display: inline-block;
+         }
+      }
+      .title {
+         flex: 1;
+         -ms-flex:1;
+         font-weight: bold;
+         @include transition (all .2s ease-in-out);
+      }
+      &:hover .title {
+         @include desktop {
+            @include transform (translateX(10px));
+         }
+      }
+      @include bp-lg {
+         font-size: 28px;
+         .num {
+            width: 50px;
+         }
+      }
+      @include bp-tab {
+         font-size: 21px;
+         padding: 25px 0 10px;
+      }
+      @include bp-mob {
+         font-size: 18px;
+         padding: 15px 0 5px;
+         border-bottom: 1px solid $gray;
+         .num {
+            width: 32px;
+         }
+         .icon img {
+            width: 14px;
+         }
+      }
+      &.active .icon {
+         @include transform (rotate(45deg) translateY(-2px));
+      }
+      &.active .title {
+         @include desktop {
+            @include transform (translateX(10px));
+         }
+      }
+   }
+   .cont {
+      display: none;
+      font-size: 16px;
+      padding-top: 25px;
+      position: relative;
+      ul {
+         display: block;
+         li {
+            display: block;
+            box-sizing: border-box;
+            position: relative;
+            padding: 5px 0 5px 20px;
+            &:before {
+               content: '';
+               position: absolute;
+               top: 15px;
+               left: 0;
+               width: 5px;
+               height: 5px;
+               background: $black;
+               border-radius:50%;
+            }
+         }
+      }
+      @include bp-tab {
+         font-size: 15px;
+      }
+      @include bp-mob {
+         font-size: 14px;
+         padding-top: 15px;
+         ul li {
+            padding: 3px 0 3px 15px;
+            &:before {
+               top: 13px;
+            }
+         }
+      }
+   }
+   @include bp-tab {
+      margin-top: 25px;
+   }
+   @include bp-mob {
+      margin-top: 15px;
+   }
+}

@@ -1,0 +1,511 @@
+// _header.scss
+// ==============
+
+header {
+   padding: 48px 48px;
+   box-sizing: border-box;
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: auto;
+   @include flex;
+   align-items: flex-start;
+   z-index: 10000;
+   pointer-events: none;
+   @include transition (opacity .2s ease-in-out);
+   @include bp-tab {
+      padding: 40px;
+   }
+   @include bp-mob {
+      background: $black;
+      padding: 25px 25px 20px;
+      position: fixed;
+   }
+   .logo {
+      position: relative;
+      z-index: 2;
+      width: 200px;
+      pointer-events: all;
+      height:26.81px;
+      svg {
+         display: block;
+         width: 100%;
+         path {
+            fill: #fff;
+            @include transition (fill .2s ease-in-out);
+         }
+      }
+      &.active {
+         svg path {
+            fill: #fff !important;
+         }
+      }
+      @include bp-tab {
+         width: 180px;
+      }
+      @include bp-mob {
+         width: 170px;
+      }
+   }
+   #navBtn {
+      order: 2;
+      text-align: right;
+      z-index: 2;
+      color: #fff;
+      pointer-events: all;
+      h5 {
+         display: inline-block;
+         vertical-align: middle;
+         line-height: 1;
+         margin-right: 10px;
+         @include bp-mob {
+            margin-right: 8px;
+         }
+      }
+      .shape {
+         display: inline-block;
+         vertical-align: middle;
+         width: 18px;
+         height: 18px;
+         box-sizing: border-box;
+         border-radius: 9px;
+         border-top-right-radius: 0;
+         border: 1px solid #fff;
+         background: #fff;
+         @include transition (all .2s ease-in-out);
+      }
+      &:hover {
+         @include desktop {
+            .shape {
+               @include transform (scale(1.3));
+            }
+         }
+      }
+      &.active {
+         color: #fff !important;
+         .shape {
+            background: transparent;
+            border-top-right-radius: 9px;
+            border-bottom-left-radius: 0;
+            border-color: #fff !important;
+         }
+      }
+   }
+   nav {
+      order: 3;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 1;
+      visibility: hidden;
+      pointer-events: all;
+      #navBg {
+         position: absolute;
+         top: 0;
+         right: 0;
+         height: 100%;
+         width: 100%;
+         opacity: 0;
+         visibility: hidden;
+         background: rgba(229,229,227,.75);
+         @include transition (all .375s ease-in-out);
+         @include bp-mob-vert {
+            background: rgba(0,0,0,.75);
+         }
+      }
+      #navWrap {
+         position: absolute;
+         right: 0;
+         top: 0;
+         width: 0;
+         height: 100%;
+         @include flex;
+         background: $black;
+         @include transition (all .375s ease-in-out);
+      }
+      #mainNav {
+         text-align: right;
+         width: 100%;
+         padding: 48px 48px 48px 96px;
+         box-sizing: border-box;
+         @include bp-tab {
+            padding: 40px 40px 40px 80px;
+         }
+         li {
+            display: block;
+            opacity: 0;
+            visibility: hidden;
+         }
+         a {
+            color: #fff;
+            display: block;
+         	font-family: $mars;
+            font-size: 30px;
+            line-height: 1;
+            padding: 15px 0;
+            position: relative;
+            &:after {
+               position: absolute;
+               bottom: 4px;
+               width: 0;
+               height: 1px;
+               background: $gray;
+               content: '';
+               right: 0;
+               @include transition (all .2s ease-in-out);
+            }
+            &:hover {
+               @include desktop {
+                  color: $gray;
+                  &:after {
+                     width: 100%;
+                  }
+               }
+            }
+         }
+         @include bp-lg {
+            a {
+               font-size: 42px;
+            }
+         }
+         @include bp-mob-wide {
+            padding: 25px 25px 25px 50px;
+            a {
+               font-size: 24px;
+               padding: 12px 0;
+            }
+         }
+         @include bp-mob-vert {
+            text-align: center;
+            padding: 0;
+            margin-top: -50px;
+            a {
+               font-size: 28px;
+               padding: 16px 0;
+            }
+         }
+      }
+      .social {
+         position: absolute;
+         bottom: 48px;
+         right: 48px;
+         pointer-events: all;
+         li {
+            margin-left: 12px;
+            opacity: 0;
+            visibility: hidden;
+            transition: none;
+            @include transition (all .15s ease-in-out);
+         }
+         @include bp-tab {
+            bottom: 40px;
+            right: 40px;
+         }
+         @include bp-mob-wide {
+            display: none;
+         }
+         @include bp-mob-vert {
+            right: auto;
+            bottom: 100px;
+            width: 100%;
+            text-align: center;
+            li {
+               margin: 0 8px;
+            }
+         }
+      }
+      &.open {
+         visibility: visible;
+         #navBg {
+            opacity: 1;
+            visibility: visible;
+         }
+         #navWrap {
+            width: 400px;
+         }
+         #mainNav li {
+            opacity: 1;
+            visibility: visible;
+            @include transition (all .2s ease-in-out .325s);
+         }
+         .social li {
+            opacity: 1;
+            visibility: visible;
+            @include transition (all .2s ease-in-out);
+            -webkit-transition-delay: .325s;
+            -moz-transition-delay: .325s;
+            transition-delay: .325s;
+         }
+         @include bp-lg {
+            #navWrap {
+               width: 500px;
+            }
+         }
+         @include bp-mob-vert {
+            #navWrap {
+               width: 100vw;
+            }
+         }
+      }
+   }
+}
+.careers-wrap header{
+   @include bp-mob {
+      background: transparent;
+   }
+}
+
+#home header #navBtn {
+   opacity: 0;
+   visibility: hidden;
+   animation: fadeIn .25s normal forwards ease-in-out;
+   animation-delay: 3.75s;
+}
+
+.studio-wrap header #navBtn {
+   opacity: 0;
+   visibility: hidden;
+   animation: fadeIn .25s normal forwards ease-in-out;
+   animation-delay: 3s;
+}
+
+header.scrolling {
+   @media screen and (min-width: 768px) {
+      opacity: 0;
+      visibility: hidden;
+      .logo {
+         opacity: 0;
+         visibility: hidden;
+      }
+   }
+}
+.about-wrap header.scrolling {
+   @media screen and (min-width: 768px) {
+      opacity: 1;
+      visibility: visible;
+      .logo {
+         opacity: 0;
+         visibility: hidden;
+      }
+   }
+}
+.project-wrap header.scrolling {
+   @media screen and (min-width: 768px) {
+      opacity: 1;
+      visibility: visible;
+      .logo {
+         opacity: 0;
+         visibility: hidden;
+      }
+   }
+}
+
+header.inverted {
+   .logo {
+      svg {
+         path {
+            fill: $black;
+         }
+      }
+   }
+   #navBtn {
+      color: $black;
+      .shape {
+         background: $black;
+         border: 1px solid $black;
+      }
+   }
+   @media screen and (min-width: 768px) {
+      position: fixed;
+      opacity: 1 !important;
+   }
+   @include bp-mob {
+      background: #fff;
+   }
+}
+.studio-wrap header.inverted {
+   
+   #navBtn {
+      color: $black;
+      .shape {
+         background: $black;
+         border: 1px solid $black;
+      }
+   }
+   @media screen and (min-width: 768px) {
+      position: fixed;
+      opacity: 1 !important;
+   }
+   @include bp-mob {
+      background: transparent;
+   }
+   &.scrolling{
+      .logo{
+         opacity: 0;
+         visibility: visible;
+         svg {
+         path {
+            fill: $black!important;
+         }
+      }
+      }
+   #navBtn {
+      color: $black!important;
+      .shape {
+         background: $black!important;
+         border: 1px solid $black!important;
+      }
+   }
+   @include bp-mob {
+      background: #fff;
+   }
+   }
+}
+header.inverted2 {
+   .logo {
+      svg {
+         path {
+            fill: #fff;
+         }
+      }
+   }
+   #navBtn {
+      color: #fff;
+      .shape {
+         background: #fff;
+         border: 1px solid #fff;
+      }
+   }
+   @media screen and (min-width: 768px) {
+      position: fixed;
+      opacity: 1 !important;
+   }
+   /*@include bp-mob {
+      background: #fff;
+   }*/
+}
+header.inverted3 {
+   .logo {
+      svg {
+         path {
+            fill: #fff;
+         }
+      }
+   }
+   #navBtn {
+      color: #fff;
+      .shape {
+         background: #fff;
+         border: 1px solid #fff;
+      }
+   }
+   @media screen and (min-width: 768px) {
+      position: fixed;
+      opacity: 1 !important;
+   }
+   @include bp-mob {
+      background: #fff;
+   }
+}
+
+header.end.scrolling {
+   @media screen and (min-width: 768px) {
+      position: fixed;
+      opacity: 1 !important;
+      visibility: visible !important;
+      .logo {
+         opacity: 1;
+         visibility: visible;
+      }
+   }
+}
+
+#subpage.studio-wrap header:not(.end) {
+   position: fixed;
+   .logo {
+      @include bp-mob {
+         opacity:1!important;
+      }
+      svg {
+         path {
+            fill: #fff;
+         }
+      }
+   }
+   #navBtn {
+      color: #fff;
+      .shape {
+         background: #fff;
+         border: 1px solid #fff;
+      }
+   }
+}
+#subpage.careers-wrap header:not(.end) {
+   position: fixed;
+   visibility:visible;
+   .logo {
+      
+      svg {
+         path {
+            fill: $black;
+         }
+      }
+   }
+   #navBtn {
+      color: $black;
+      .shape {
+         background: $black;
+         border: 1px solid $black;
+      }
+   }
+}
+#subpage.studio-wrap header.inverted.inverted2 {
+   position: fixed;
+   .logo {
+      opacity:0;
+      svg {
+         path {
+            fill: $black!important;
+         }
+      }
+   }
+   #navBtn {
+      color: $black!important;
+      .shape {
+         background: $black!important;
+         border: 1px solid $black!important;
+      }
+   }
+}
+
+header.end {
+   position: fixed !important;
+}
+
+@include bp-mob {
+   #subpage.project-wrap header:not(.inverted),
+   #subpage.about-wrap header.inverted2 {
+      background: transparent;
+   }
+   #subpage.project-wrap header.scrolling:not(.end),
+   #subpage.about-wrap header.scrolling:not(.end) {
+      background: #fff;
+      .logo {
+         svg {
+            path {
+               fill: $black;
+            }
+         }
+      }
+      #navBtn {
+         color: $black;
+         .shape {
+            background: $black;
+            border: 1px solid $black;
+         }
+      }
+   }
+}

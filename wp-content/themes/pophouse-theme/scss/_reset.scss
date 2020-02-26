@@ -1,0 +1,17 @@
+// _reset
+// ========
+
+* {margin: 0px; padding: 0px; -webkit-text-size-adjust: 100%; -webkit-font-smoothing: antialiased; -ms-text-size-adjust: 100%; text-size-adjust: 100%; -moz-osx-font-smoothing: grayscale;}
+.bold {font-weight: 700;}
+.italic {font-weight: italic;}
+a, img, button {background: none; outline: none; border: 0px; text-decoration: none;}
+button, .btn {@include transition (all .125s ease-in-out); cursor: pointer;}
+img {max-width: 100%; display: block;}
+ul, li {list-style-type: none;}
+html, body {width: auto; min-width: 100%; max-width: 100%; min-height: 100%; overflow: auto; overflow-x: hidden;}
+html.noScroll, body.noScroll {overflow: hidden;position:fixed;}
+html {-ms-content-zooming: none; height: 100%;}
+@-ms-viewport {width: device-width;}
+.fade {opacity: 1.0; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"; transition: opacity .125s ease-in-out; -moz-transition: opacity .125s ease-in-out; -webkit-transition: opacity .125s ease-in-out; -webkit-backface-visibility: hidden;}
+.fade:hover, .fade:active {opacity: .75; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=65)";}
+.clear {@include clear;}

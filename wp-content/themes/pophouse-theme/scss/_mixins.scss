@@ -1,0 +1,167 @@
+// _mixins.scss
+// ==============
+
+@mixin bg-image ($imgpath) {
+  background-image: url($imgpath);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+@mixin clear {
+  content: "";
+  display: table;
+  clear: both;
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin block {
+	margin: 0;
+	width: auto;
+	min-width: 100%;
+	display: block;
+	position: relative;
+	box-sizing: border-box;
+}
+
+@mixin contain {
+	position: relative;
+	margin: 0px auto;
+	display: block;
+	box-sizing: border-box;
+   width: calc(100% - 192px);
+}
+
+@mixin center {
+   position: relative;
+   top: 50%;
+   left: 50%;
+   -webkit-transform: translate(-50%, -50%);
+   -moz-transform: translate(-50%, -50%);
+   transform: translate(-50%, -50%);
+}
+
+@mixin vert-align {
+   position: relative;
+   top: 50%;
+   -webkit-transform: translateY(-50%);
+   -moz-transform: translateY(-50%);
+   transform: translateY(-50%);
+}
+
+@mixin horiz-align {
+   position: relative;
+   left: 50%;
+   -webkit-transform: translateX(-50%);
+   -moz-transform: translateX(-50%);
+   transform: translateX(-50%);
+}
+
+@mixin transition($args) {
+   -webkit-transition: $args;
+   -moz-transition: $args;
+   -ms-transition: $args;
+   -o-transition: $args;
+   transition: $args;
+}
+
+@mixin transform($transforms) {
+   -moz-transform: $transforms;
+   -o-transform: $transforms;
+   -ms-transform: $transforms;
+   -webkit-transform: $transforms;
+   transform: $transforms;
+}
+
+@mixin flex {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	-ms-flex-align: center;
+	align-items: center;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+}
+
+@mixin flex-start {
+   -ms-flex-align: start;
+   align-items: flex-start;
+}
+
+
+/**BREAKPOINTS**/
+
+@mixin bp-lg {
+   @media only screen and (min-width: 1700px) {
+      @content;
+   }
+}
+
+@mixin bp-md {
+   @media only screen and (max-width: 1399px) {
+      @content;
+   }
+}
+
+@mixin bp-tab {
+   @media only screen and (max-width: 1199px) {
+      @content;
+   }
+}
+
+@mixin bp-tab-vert {
+   @media only screen and (max-width: 991px) and (orientation: portrait) {
+      @content;
+   }
+}
+
+@mixin bp-991 {
+   @media only screen and (max-width: 991px) {
+      @content;
+   }
+}
+
+@mixin bp-mob {
+   @media only screen and (max-width: 767px) {
+      @content;
+   }
+}
+
+@mixin bp-mob-vert {
+   @media only screen and (max-width: 767px) and (orientation: portrait) {
+      @content;
+   }
+}
+
+@mixin bp-mob-wide {
+   @media all and (pointer: coarse) and (max-width: 899px) and (orientation: landscape) {
+      @content;
+   }
+}
+
+@mixin bp-xs {
+   @media only screen and (max-width: 349px) {
+      @content;
+   }
+}
+
+@mixin touch {
+   @media all and (pointer: coarse) and (max-width: 1199px) {
+      @content;
+   }
+}
+
+@mixin desktop {
+   @media all and (pointer: fine),
+   screen and (-moz-touch-enabled:0) {
+      @content;
+   }
+}

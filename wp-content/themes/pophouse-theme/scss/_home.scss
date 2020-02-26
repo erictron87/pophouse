@@ -1,0 +1,628 @@
+// _home.scss
+// ==============
+
+body#home {
+   max-height: 100vh;
+   overflow: hidden;
+   @keyframes addScroll {
+      0% {
+         max-height: 100vh;
+         overflow: hidden;
+      }
+      100% {
+         max-height: none;
+         overflow: auto;
+      }
+   }
+}
+
+#landing {
+   background: $black;
+   position: relative;
+   display: block;
+   width: 100%;
+   height: 100vh;
+   h1 {
+      color: #fff;
+      display: table;
+      margin: 0 auto;
+      @include vert-align;
+      .text {
+         display: block;
+         opacity: 0;
+         will-change: transform;
+         -webkit-backface-visibility: visible;
+         backface-visibility: visible;
+         animation: fadeIn .25s normal forwards ease-in-out;
+         span {
+            display: inline-block;
+         }
+      }
+      .text1 {
+         color: #666;
+         animation-delay: 1s;
+      }
+      .text2 {
+         animation-delay: 1.875s;
+      }
+      .text3 {
+         animation-delay: 2.75s;
+      }
+      @keyframes fadeIn {
+         0% {
+            opacity: 0;
+            visibility: hidden;
+         }
+         100% {
+            opacity: 1;
+            visibility: visible;
+         }
+      }
+      @include bp-mob-vert {
+         @include transform (translateY(calc(-50% - 30px)));
+      }
+   }
+   #moreWrap {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 50%;
+      animation: fadeIn .25s normal forwards ease-in-out;
+      animation-delay: 3.75s;
+      opacity: 0;
+      a {
+         color: #fff;
+         font-size: 13px;
+         letter-spacing: .1em;
+         text-transform: uppercase;
+         text-align: center;
+         display: table;
+         margin: 0 auto;
+         span {
+            display: block;
+            margin: 0 auto;
+            &:first-child {
+               margin-bottom: 15px;
+            }
+         }
+         .line {
+            height: 120px;
+            width: 2px;
+            background: #fff;
+            animation: bounce .625s;
+            animation-direction: alternate;
+            animation-timing-function: cubic-bezier(.625, 0.05, 1, .5);
+            animation-iteration-count: infinite;
+            @keyframes bounce {
+               from {
+                  @include transform (translateY(15px));
+               }
+               to {
+                  @include transform (translateY(0px));
+               }
+            }
+         }
+      }
+      @include bp-mob {
+         .visible-mob {
+            display: block !important;
+         }
+      }
+      @include bp-mob-wide {
+         a {
+            span:first-child {
+               margin-bottom: 10px;
+            }
+            .line {
+               height: 35px;
+            }
+         }
+      }
+      @include bp-mob-vert {
+         width: 320px;
+         left: 50%;
+         @include transform (translateX(-50%));
+         right: auto;
+         a.visible-mob {
+            display: table !important;
+            margin: 0;
+         }
+      }
+   }
+}
+
+#intro {
+   position: relative;
+   width: 100%;
+   .split-lt figure {
+      height: 46vw;
+      min-height: 630px;
+      max-height: 800px;
+      overflow: hidden;
+      position: relative;
+      img {
+         display: block;
+         margin: 0 auto;
+         max-width: none;
+         width: 100%;
+      }
+      @media screen and (min-width: 1920px) {
+         max-height: none;
+      }
+      @include bp-991 {
+         min-height: 560px;
+      }
+   }
+   .split-rt {
+      padding: 0 80px;
+      box-sizing: border-box;
+      @include bp-991 {
+         padding: 0 60px;
+      }
+      .band {
+         height: 15vw;
+         display: block;
+         background: $black;
+         width: calc(100% + 160px);
+         margin-left: -80px;
+         position: relative;
+         &:after {
+            width: 2px;
+            height: 100%;
+            background: #fff;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            margin-left: -1px;
+            content: '';
+         }
+         @include bp-991 {
+            width: calc(100% + 120px);
+            margin-left: -60px;
+         }
+      }
+      .line {
+         height: 100px;
+         width: 2px;
+         background: $black;
+         display: block;
+         margin: 0 auto;
+      }
+      .cont {
+         max-width: 510px;
+         margin: 40px auto 0;
+         @include bp-lg {
+            max-width: 650px;
+         }
+         @media screen and (min-width: 1920px) {
+            margin-top: 80px;
+         }
+      }
+      p {
+         font-family: $mars;
+         font-size: 20px;
+         line-height: 1.7;
+         @include bp-lg {
+            font-size: 26px;
+         }
+         @media screen and (min-width: 1920px) {
+            font-size: 32px;
+         }
+         @include bp-tab {
+            font-size: 19px;
+         }
+         @include bp-991 {
+            font-size: 18px;
+         }
+      }
+      a {
+         display: table;
+         margin: 40px 0 0;
+         span {
+            display: inline-block;
+            vertical-align: middle;
+         }
+         .shape {
+            width: 22px;
+            height: 22px;
+            background: $black;
+            border-top-left-radius: 22px;
+            margin-right: 15px;
+            @include transition (all .2s ease-in-out);
+         }
+         &:hover {
+            @include desktop {
+               .shape {
+                  @include transform (scale(1.3));
+               }
+            }
+         }
+      }
+   }
+   @include bp-mob-wide {
+      .split-lt figure {
+         min-height: 360px;
+      }
+      .split-rt {
+         padding: 0 40px;
+         .band {
+            width: calc(100% + 80px);
+            height: 60px;
+            margin-left: -40px;
+         }
+         .line {
+            height: 40px;
+         }
+         .cont {
+            margin-top: 25px;
+         }
+         p {
+            font-size: 17px;
+         }
+         a {
+            margin-top: 25px;
+         }
+      }
+   }
+   @include bp-mob-vert {
+      .split-lt {
+         width: calc(100% - 50px);
+         &:before {
+            height: 140px;
+            width: 100%;
+            left: 0;
+            top: 0;
+            background: $black;
+            position: absolute;
+            content: '';
+         }
+         figure {
+            min-height: auto;
+            height: 320px;
+         }
+      }
+      .split-rt {
+         width: 100%;
+         padding: 0 50px;
+         .band {
+            display: none;
+         }
+         .cont {
+            margin-top: 60px;
+         }
+         .line {
+            height: 0px;
+         }
+         a {
+            margin-top: 30px;
+         }
+      }
+   }
+}
+
+#workWrap {
+   display: block;
+   margin: 0 auto;
+   padding-top: 220px;
+   @include bp-tab {
+      padding-top: 180px;
+   }
+   @include bp-mob {
+      padding-top: 100px;
+   }
+   .project {
+      padding: 105px 0;
+      position: relative;
+      align-items: stretch;
+      @include bp-tab {
+         padding: 90px 0;
+      }
+      @include bp-tab-vert {
+         padding: 80px 0;
+      }
+      @include bp-mob-wide {
+         padding: 30px 0;
+      }
+      @include bp-mob-vert {
+         padding: 50px 0 0;
+      }
+   }
+   .img-rt .featImg .figure {
+      width: calc(100% + 96px);
+      margin-right: -96px;
+   }
+   .img-lt .featImg .figure {
+      width: calc(100% + 96px);
+      margin-left: -96px;
+   }
+   .featImg .figure img {
+      max-width: none;
+      width: 100%;
+   }
+   @media screen and (min-width: 1920px) {
+      .img-rt .featImg .figure {
+         width: 100%;
+         margin-right: 0;
+      }
+      .img-lt .featImg .figure {
+         width: 100%;
+         margin-left: 0;
+      }
+   }
+   @include bp-tab {
+      .img-rt .featImg .figure {
+         width: calc(100% + 80px);
+         margin-right: -80px;
+      }
+      .img-lt .featImg .figure {
+         width: calc(100% + 80px);
+         margin-left: -80px;
+      }
+   }
+   @include bp-tab-vert {
+      .img-rt .featImg .figure {
+         width: calc(100% + 40px);
+         margin-right: -40px;
+      }
+      .img-lt .featImg .figure {
+         width: calc(100% + 40px);
+         margin-left: -40px;
+      }
+   }
+   @include bp-mob-wide {
+      .img-rt .featImg .figure {
+         width: calc(100% + 25px);
+         margin-right: -25px;
+      }
+      .img-lt .featImg .figure {
+         width: calc(100% + 25px);
+         margin-left: -25px;
+      }
+   }
+   @include bp-mob-vert {
+      .img-rt .featImg .figure,
+      .img-lt .featImg .figure {
+         width: calc(100% + 50px);
+         margin-left: -25px;
+      }
+   }
+   .figure {
+      overflow: hidden;
+      img {
+         @include transition (all 1s ease-in-out);
+      }
+      &:hover img {
+         @include desktop {
+               @include transform (scale(1.05));
+         }
+         @include bp-991 {
+            @include transform (translateX(-50%));
+         }
+      }
+      @include bp-mob-vert {
+         order: 1;
+         img {
+            height: calc(100vw - 50px);
+            width: auto;
+            max-width: none;
+            @include horiz-align;
+         }
+      }
+   }
+   .split-1 {
+      @include flex;
+      align-items: flex-end;
+      padding-bottom: 100px;
+      box-sizing: border-box;
+      @include bp-991 {
+         padding-bottom: 50px;
+      }
+      @include bp-mob-vert {
+         display: block;
+         order: 2;
+         text-align: center;
+         padding: 15px 15px 0;
+         box-sizing: border-box;
+      }
+   }
+   .title {
+      display: block;
+      font-weight: 300;
+      font-style: italic;
+      font-size: 24px;
+      margin: 15px 0 0;
+      @include bp-tab {
+         font-size: 22px;
+      }
+      @include bp-991 {
+         font-size: 19px;
+         margin-top: 10px;
+      }
+      @include bp-mob {
+         margin-top: 5px;
+      }
+   }
+   .view {
+      margin: 0;
+      position: relative;
+      padding: 65px 0 0 25px;
+      display: table;
+      @include transition (all .2s ease-in-out);
+      &:before {
+         width: 20px;
+         height: 1px;
+         background: $black;
+         bottom: 11px;
+         left: 0;
+         position: absolute;
+         content: '';
+         @include transition (all .2s ease-in-out);
+      }
+      @include bp-991 {
+         padding-top: 50px;
+      }
+      @include bp-mob-vert {
+         display: none;
+      }
+   }
+   .cont:hover {
+      .view {
+         @include desktop {
+            padding-left: 40px;
+            &:before {
+               width: 35px;
+            }
+         }
+      }
+   }
+   @include bp-mob-vert {
+      .line span {
+         padding-left: 25px;
+      }
+   }
+}
+
+#moreProjects {
+   background: $light;
+   width: 100%;
+   padding: 175px 0 190px;
+   h2 span {
+      background: $light;
+   }
+   .grid {
+      padding-top: 25px;
+   }
+   .split-1 {
+      margin-top: 48px;
+      position: relative;
+      figure {
+         position: relative;
+         img {
+            display: block;
+         }
+      }
+      .info {
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         color: #fff;
+         background: $black;
+         @include flex;
+         flex-direction: column;
+         -ms-flex-direction: column;
+         justify-content: flex-end;
+         align-items: flex-start;
+         padding: 50px 50px 50px 25px;
+         opacity: 0;
+         visibility: hidden;
+         box-sizing: border-box;
+         @include transition (all .2s ease-in-out);
+         h4{
+            width:100%;
+         }
+         .btn {
+            margin-top: 50px;
+            padding-left: 25px;
+            display: table;
+            position: relative;
+            &:before {
+               width: 20px;
+               height: 1px;
+               background: #fff;
+               top: 50%;
+               left: 0;
+               position: absolute;
+               content: '';
+               @include transition (all .2s ease-in-out);
+            }
+         }
+      }
+      &:hover .info {
+         opacity: 1;
+         visibility: visible;
+      }
+   }
+   @include bp-tab {
+      padding: 150px 0;
+      .split-1 {
+         margin-top: 35px;
+         @include desktop {
+            .info {
+               padding: 40px 30px 40px 20px;
+               .tn {
+                  margin-top: 35px;
+               }
+            }
+         }
+      }
+   }
+   @include touch {
+      .split-1 .info {
+         opacity: 1;
+         visibility: visible;
+         display: block;
+         position: relative;
+         top: auto;
+         left: auto;
+         text-align: center;
+         padding: 0;
+         background: none;
+         color: $black;
+         padding: 20px 0px 0;
+         .btn {
+            display: none;
+         }
+         .no-link {
+            display: table;
+            margin: 10px auto 0;
+            text-align: center;
+            padding-left: 0;
+            &:before {
+               display: none;
+            }
+         }
+      }
+   }
+   @include bp-991 {
+      .split-1 {
+         width: calc(50% - 15px);
+         margin-top: 30px;
+         figure {
+            height: 50vw;
+            overflow: hidden;
+            img {
+               @include vert-align;
+            }
+         }
+      }
+   }
+   @include bp-mob-wide {
+      padding: 80px 0;
+      .grid {
+         padding-top: 20px;
+      }
+      .split-1 {
+         width: calc(50% - 10px);
+         margin-top: 25px;
+      }
+   }
+   @include bp-mob-vert {
+      padding: 55px 0 35px;
+      margin-top: 55px;
+      .grid {
+         padding: 15px 0 0;
+      }
+      .split-1 {
+         width: 100%;
+         margin-top: 30px;
+         figure {
+            height: calc(100vw - 50px);
+         }
+         .info {
+            padding: 15px 30px;
+         }
+      }
+   }
+}
